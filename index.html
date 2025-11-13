@@ -68,13 +68,15 @@
 <body>
   <header>
     <div class="brand">
-      <div class="logo" id="pfp-container"><img id="pfp" src="" alt="" style="display:none;width:64px;height:64px;border-radius:10px;object-fit:cover;"><strong id="pfp-initial">T</strong></div>
+      <div class="logo" id="pfp-container" style="position:relative; cursor:pointer;">
+  <img id="pfp" src="" alt="" style="display:none;width:80px;height:80px;border-radius:12px;object-fit:cover;">
+  <strong id="pfp-initial" style="font-size:22px;">T</strong>
+</div>
       <div>
         <h1>Talha <span style="font-size:12px;color:var(--muted);">• Pentester & Bug Hunter</span></h1>
         <div class="subtitle">Kali Linux • Web App Security • Cloud Recon • Automation</div>
       </div>
     </div>
-    <div style="margin-top:10px"><input type="file" id="pfp-upload" accept="image/*" style="color:var(--muted);font-size:12px;max-width:180px"></div>
     <nav>
       <a href="#projects">Projects</a>
       <a href="#writeups">Writeups</a>
@@ -207,7 +209,17 @@
     <footer>
       <div style="max-width:900px;margin:auto">© 2025 Talha • Built with attention to detail • Deploy on GitHub Pages</div>
     </footer>
-  </main>
+  <!-- Profile Modal -->
+<div id="pfp-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#101214;padding:20px;border-radius:14px;text-align:center;border:1px solid rgba(255,255,255,0.05);max-width:360px;width:90%;">
+    <img id="modal-pfp" src="" style="width:160px;height:160px;border-radius:14px;object-fit:cover;margin-bottom:16px;display:none;">
+    <div id="modal-initial" style="font-size:60px;color:var(--neon);display:none;font-family:var(--mono);"></div>
+    <label for="pfp-upload" style="display:inline-block;padding:10px 14px;background:#000;border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:var(--neon);cursor:pointer;font-size:14px;">Change Picture</label>
+    <input type="file" id="pfp-upload" accept="image/*" style="display:none;">
+    <div style="margin-top:16px;"><button onclick="closePFPModal()" style="padding:8px 14px;border:none;background:#222;border-radius:10px;color:#ccc;cursor:pointer;">Close</button></div>
+  </div>
+</div>
+</main>
 
   <script>
     // Terminal typing animation
@@ -247,6 +259,40 @@
     reader.onload = function(e){ img.src = e.target.result; img.style.display='block'; initial.style.display='none'; };
     reader.readAsDataURL(file);
   });
+</script>
+<script>
+const pfpContainer=document.getElementById('pfp-container');
+const modal=document.getElementById('pfp-modal');
+const modalImg=document.getElementById('modal-pfp');
+const modalInitial=document.getElementById('modal-initial');
+const img=document.getElementById('pfp');
+const initial=document.getElementById('pfp-initial');
+let upload=document.getElementById('pfp-upload');
+
+pfpContainer.onclick=()=>{
+  modal.style.display='flex';
+  if(img.style.display==='none'){
+    modalImg.style.display='none';
+    modalInitial.textContent=initial.textContent;
+    modalInitial.style.display='block';
+  } else {
+    modalImg.src=img.src;
+    modalImg.style.display='block';
+    modalInitial.style.display='none';
+  }
+};
+function closePFPModal(){modal.style.display='none';}
+
+upload.addEventListener('change',function(){
+  const file=this.files[0];if(!file)return;
+  if(file.size>50*1024*1024){alert('Image must be under 50MB');return;}
+  const reader=new FileReader();
+  reader.onload=function(e){
+    img.src=e.target.result;img.style.display='block';initial.style.display='none';
+    modalImg.src=e.target.result;modalImg.style.display='block';modalInitial.style.display='none';
+  };
+  reader.readAsDataURL(file);
+});
 </script>
 </body>
 </html>
