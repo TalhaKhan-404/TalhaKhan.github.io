@@ -64,12 +64,17 @@
     /* fancy CV download */
     .download{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:rgba(0,0,0,0.45);color:var(--neon)}
   </style>
+<style>
+#pfp-container:hover { transform:scale(1.06); box-shadow:0 0 18px rgba(0,255,127,0.7),0 0 28px rgba(0,255,127,0.4); }
+#pfp-modal > div { animation:popIn 0.25s ease; }
+@keyframes popIn {0%{transform:scale(0.85);opacity:0;}100%{transform:scale(1);opacity:1;}}
+</style>
 </head>
 <body>
   <header>
     <div class="brand">
-      <div class="logo" id="pfp-container" style="position:relative; cursor:pointer;">
-  <img id="pfp" src="photo-1.png" alt="" style="display:block;width:76px;height:76px;border-radius:12px;object-fit:cover;">
+      <div class="logo" style="width:110px;height:110px;border-radius:50%;overflow:hidden;position:relative;cursor:pointer;box-shadow:0 0 12px rgba(0,255,127,0.4),0 0 22px rgba(0,255,127,0.2);transition:transform 0.25s ease, box-shadow 0.25s ease;" id="pfp-container" id="pfp-container" style="position:relative; cursor:pointer;">
+  <img id="pfp" src="photo-1.png" alt="" style="display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;filter:brightness(1.05);backdrop-filter:blur(2px);">
   <strong id="pfp-initial" style="display:none;font-size:22px;">T</strong>
 </div>
       <div>
@@ -176,43 +181,7 @@
           <p style="color:var(--muted);margin-top:8px">High-speed scanner to safely detect XML-RPC endpoints and common misconfigurations.</p>
         </div>
       </div>
-    </section><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Talha — Cybersecurity Portfolio</title>
-  <meta name="description" content="Talha — Pentester, Bug Hunter & Security Researcher" />
-  <style>
-    :root{
-      --bg:#050507; --panel:#0b0c0f; --neon:#00ff7f; --muted:#9aa0a6; --glass: rgba(255,255,255,0.03);
-      --accent: linear-gradient(90deg,#00ff7f,#39f,#9b5cff);
-      --mono: 'Courier New', monospace;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:radial-gradient(1000px 600px at 10% 10%, rgba(0,255,127,0.03), transparent), radial-gradient(900px 500px at 90% 90%, rgba(155,92,255,0.03), transparent),var(--bg);color:#e6eef3;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    header{padding:36px 20px;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:20px;align-items:center;justify-content:space-between}
-    .brand{display:flex;gap:16px;align-items:center}
-    .logo{width:64px;height:64px;border-radius:10px;background:linear-gradient(135deg,#061014,rgba(0,0,0,0.2));display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04)}
-    .logo strong{color:var(--neon);font-family:var(--mono);font-size:18px}
-    h1{font-size:20px;margin:0;color:var(--neon);letter-spacing:0.6px}
-    .subtitle{color:var(--muted);font-size:13px}
-    nav a{color:var(--muted);margin-left:18px;text-decoration:none;font-size:14px}
-    main{max-width:1100px;margin:36px auto;padding:0 20px}
-
-    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);padding:22px;border-radius:12px;box-shadow:0 6px 30px rgba(0,0,0,0.6)}
-
-    .intro h2{color:var(--neon);margin:0 0 6px 0}
-    .intro p{color:var(--muted);margin:0 0 12px 0}
-    .cta{display:flex;gap:10px;margin-top:16px}
-    .btn{padding:10px 14px;border-radius:9px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.03);color:var(--neon);cursor:pointer;text-decoration:none;font-weight:600}
-    .ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
-
-    .stats{display:flex;gap:12px;margin-top:14px}
-    .stat{background:var(--glass);padding:12px;border-radius:8px;font-size:13px;color:var(--muted)}
-    .stat strong{display:block;color:var(--neon);font-size:18px}
-
+    </section>
 
     <section id="writeups" style="margin-top:28px">
       <h2 style="margin-bottom:12px">Selected Writeups</h2>
