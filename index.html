@@ -246,52 +246,48 @@
       document.querySelectorAll('.stat strong')[0].textContent = '50+';
     })();
   </script>
+
 <script>
-  const upload = document.getElementById('pfp-upload');
-  const img = document.getElementById('pfp');
-  const initial = document.getElementById('pfp-initial');
+document.addEventListener("DOMContentLoaded",function(){
+ const pfpContainer=document.getElementById('pfp-container');
+ const modal=document.getElementById('pfp-modal');
+ const modalImg=document.getElementById('modal-pfp');
+ const modalInitial=document.getElementById('modal-initial');
+ const img=document.getElementById('pfp');
+ const initial=document.getElementById('pfp-initial');
+ const upload=document.getElementById('pfp-upload');
 
-  upload.addEventListener('change', function(){
-    const file = this.files[0];
-    if(!file) return;
-    if(file.size > 50 * 1024 * 1024){ alert('Image must be under 50MB'); return; }
-    const reader = new FileReader();
-    reader.onload = function(e){ img.src = e.target.result; img.style.display='block'; initial.style.display='none'; };
-    reader.readAsDataURL(file);
-  });
-</script>
-<script>
-const pfpContainer=document.getElementById('pfp-container');
-const modal=document.getElementById('pfp-modal');
-const modalImg=document.getElementById('modal-pfp');
-const modalInitial=document.getElementById('modal-initial');
-const img=document.getElementById('pfp');
-const initial=document.getElementById('pfp-initial');
-let upload=document.getElementById('pfp-upload');
+ function openPFPModal(){
+   modal.style.display='flex';
+   if(img.style.display==='none'){
+     modalImg.style.display='none';
+     modalInitial.textContent=initial.textContent;
+     modalInitial.style.display='block';
+   } else {
+     modalImg.src=img.src;
+     modalImg.style.display='block';
+     modalInitial.style.display='none';
+   }
+ }
+ window.closePFPModal=function(){modal.style.display='none';};
 
-pfpContainer.onclick=()=>{
-  modal.style.display='flex';
-  if(img.style.display==='none'){
-    modalImg.style.display='none';
-    modalInitial.textContent=initial.textContent;
-    modalInitial.style.display='block';
-  } else {
-    modalImg.src=img.src;
-    modalImg.style.display='block';
-    modalInitial.style.display='none';
-  }
-};
-function closePFPModal(){modal.style.display='none';}
+ pfpContainer.addEventListener('click',openPFPModal);
 
-upload.addEventListener('change',function(){
-  const file=this.files[0];if(!file)return;
-  if(file.size>50*1024*1024){alert('Image must be under 50MB');return;}
-  const reader=new FileReader();
-  reader.onload=function(e){
-    img.src=e.target.result;img.style.display='block';initial.style.display='none';
-    modalImg.src=e.target.result;modalImg.style.display='block';modalInitial.style.display='none';
-  };
-  reader.readAsDataURL(file);
+ upload.addEventListener('change',function(){
+   const file=this.files[0];
+   if(!file)return;
+   if(file.size>50*1024*1024){alert('Image must be under 50MB');return;}
+   const reader=new FileReader();
+   reader.onload=function(e){
+     img.src=e.target.result;
+     img.style.display='block';
+     initial.style.display='none';
+     modalImg.src=e.target.result;
+     modalImg.style.display='block';
+     modalInitial.style.display='none';
+   };
+   reader.readAsDataURL(file);
+ });
 });
 </script>
 </body>
